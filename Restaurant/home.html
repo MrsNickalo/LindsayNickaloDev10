@@ -1,0 +1,72 @@
+<!--
+Name: Lindsay Nickalo
+Email: bradleyL4@winthrop.edu
+Date: September 09, 2019
+Last Modified: September 13, 2019
+Description: HTML page for home page of Austyn's Cafe. Part of project completed for Intro to Web Development Course at Dev10.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Home Page</title>
+		<!--Required links for Bootstrap, CSS, and JavaScript-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="Scripts/restaurantStyles.css" rel="stylesheet" type="text/css" />
+		<style>
+		</style>
+	</head>
+	<body>
+		<!--Shows if JavaScript is not enabled-->
+		<noscript> This site works better if you have JavaScript enabled! </noscript>
+		<!--Carousel code using Bootstrap-->
+		<div class="carousel slide" data-ride="carousel" id="carouselHeader">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="d-block w-100 jumbotron"><h1 class="text-left">Austyn's Cafe is opening a new location!</h1><h3 class="text-right mt-5">We can't wait to see y'all there!</h3></div>
+				</div>
+				<div class="carousel-item">
+					<div class="d-block-100 jumbotron"><h1 class="text-left">We're rolling out our seasonal menu!</h1><h3 class="text-right mt-5">Check out our special options for the season!</h3></div>
+				</div>
+				<div class="carousel-item">
+					<div class="d-block-100 jumbotron"><h1 class="text-left">The drink of the month is:</h1><h3 class="text-right mt-5">SG Special Brew</h3></div>
+				</div>
+			</div>
+		</div>
+		
+		<h1 class="centered">Austyn's Cafe</h1>
+		<!--Navigation Menu-->
+		<nav class="nav nav-pills">
+			<a class="btn badge-pill" href="home.html"><i class="fa fa-home" style="font-size:large"></i></a>
+			<a class="btn badge-pill" href="menu.html">Menu</a>
+			<a class="btn badge-pill" href="contact.html">Contact Us</a>
+		</nav>
+		<div class="clear-float"></div>
+		<!-- Restaurant Image-->
+		<figure class="centered">
+			<img src="Images/restaurant.jpg" alt="Picture of Austyn's Cafe" style="height:150px"  />
+		</figure>
+		<!--Restaurant Description-->
+		<section>
+			<p>Austyn's Cafe<br />
+			Located right beside Winthrop University, Austyn's Cafe provides the perfect spot for students to grab a quick bite to eat or hang out. Offering your classic American favorites such as hot dogs, hamburgers, and brisket sandwiches, Austyn's provides its customers a place to meet up without breaking the piggy bank. There's plenty of room at Austyn's, come see us today!
+		</section>
+		<!--Restaurant contact info displayed in footer-->
+		<footer>
+			<hr />
+			502 Oakland Avenue, Rock Hill, SC, 29730 <br />
+			803-323-5153
+		</footer>
+		<!--other JavaScript files-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<!--function to let carousel automatically flip-->
+		<script type="text/javascript">
+			$('carouselHeader').carousel({ interval: 2000, cycle: true });
+		</script>
+	</body>
+</html>

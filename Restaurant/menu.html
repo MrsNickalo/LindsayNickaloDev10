@@ -1,0 +1,141 @@
+<!--
+Name: Lindsay Nickalo
+Email: bradleyL4@winthrop.edu
+Date: September 09, 2019
+Last Modified: September 13, 2019
+Description: HTML page for menu of Austyn's Cafe. Part of project completed for Intro to Web Development Course at Dev10.
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Required links for CSS, JavaScript, and Bootstrap.-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Menu</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href="Scripts/restaurantStyles.css" rel="stylesheet" type="text/css" />
+		<!-- CSS styling for table of beverages and bootstrap grid for menu -->
+		<style>
+			table {
+				margin-left: .5%;
+			}
+			th {
+				font-size: larger;
+				padding-bottom: 0px;
+			}			
+			.tHeader {
+				font-size: larger;
+				padding-bottom: 0px;
+				font-weight: bold;
+				text-align: center;
+				margin-bottom: 0px;
+			}
+			.tBox {
+				text-align: center;
+				font-weight: 100;
+				padding-top: 0px;
+			}
+			td {
+				text-align: center;
+				font-weight: 100;
+				padding-top: 0px;
+				width: 33%;
+			}
+			.Bev {
+				text-align: left;
+				padding: 5px 15px 5px 15px;
+			}
+			.border {
+				margin-left:30%;
+				width: 40%;
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			.shaded tbody tr:nth-child(even) {
+				background-color: #8BA6A9;
+			}
+			.shaded tbody tr:nth-child(odd) {
+				background-color: #D0F3BC;
+			}
+		</style>
+	</head>
+	<body>
+		<!--shows message if JavaScript is not enabled-->
+		<noscript> This site works better if you have JavaScript enabled! </noscript>
+		<header>
+			<h1>Austyn's Cafe</h1>
+		</header>
+		<!--Navigation Menu-->
+		<nav class="nav nav-pills">
+			<a class="btn badge-pill" href="home.html"><i class="fa fa-home" style="font-size: large"></i></a>
+			<a class="btn badge-pill" href="menu.html">Menu</a>
+			<a class="btn badge-pill" href="contact.html">Contact Us</a>
+		</nav>
+		<div class="clear-float"></div>
+		<!--Bootstrap Grid for Menu-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm tBox">
+					<p class="tHeader">Burger and Fries</p>
+					Your choice-with or without cheese. Pickle, onion, tomato, and lettuce. Served with our famous thick cut french fries.<br /> $7.95
+				</div>
+				<div class="col-sm tBox">
+					<p class="tHeader">Hot Dog and Chips</p>
+					Your choice-white or wheat bun. Relish, mustard, and ketchup. Served with our house-made chips.<br /> $7.95
+				</div>
+				<div class="col-sm tBox">
+					<p class="tHeader">Italian Sausage and Peppers</p>
+					Your choice-mild or spicy Cole Slaw. Served with garlic mashers.<br /> $10.95
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm tBox">
+					<p class="tHeader">Tenderloin Sandwich and Chips</p>
+					Plain or Sesame Seed Bun. Pickle, onion, tomato, and lettuce. Served with our house-made chips.<br /> $8.95
+				</div>
+				<div class="col-sm tBox">
+					<p class="tHeader">House Salad</p>
+					Your choice-with or without cheese. Iceberg lettuce, tomatoes, peppers. Thousand Island or Rance Dressing. Served with a dinner roll.<br />$6.95
+				</div>
+				<div class="col-sm tBox">
+					<p class="tHeader">Brisket Sandwich and Fries</p>
+					Smoked Brisket on thick-cut Texas Toast. Cole Slaw. Served with our famous thick-cut french fries.<br /> $7.95
+				</div>
+			</div>
+		</div>
+		<hr />
+		<!--Beverage menu, shaded using CSS-->
+		<table class="border shaded">
+			<tbody>
+				<tr>
+					<th colspan="2">Beverages</th>
+				</tr>
+				<tr>
+					<td class="Bev">Root Beer</td>
+					<td>$3.00</td>
+				</tr>
+				<tr>
+					<td class="Bev">Bottled Water</td>
+					<td>$1.25</td>
+				</tr>
+				<tr>
+					<td class="Bev">Lemonade</td>
+					<td>$1.00</td>
+				</tr>
+				<tr>
+					<td class="Bev">Iced Tea</td>
+					<td>$1.25</td>
+				</tr>
+			</tbody>
+		</table>
+		<!--Restaurant contact info located in footer-->
+		<footer>
+			<hr />
+			502 Oakland Avenue, Rock Hill, SC, 29730 <br />
+			803-323-5153
+		</footer>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</body>
+</html>

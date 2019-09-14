@@ -1,0 +1,49 @@
+<!DOCTYPE html)
+<!--
+Author: Lindsay Nickalo
+Email: bradleyl4@winthrop.edu
+Date: September 09, 2019
+Purpose: A webpage to roll dice.
+-->
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Lucky Sevens</title>
+		<link href="rollDice.css" rel="stylesheet" type="text/css"/>
+		<script type="text/JavaScript" src="rollDice.js">
+		</script>
+	</head>
+	<body>
+		<h1 class="centered">Lucky Sevens</h1>
+		<form name="betForm" onsubmit="return validateForm();" class="form-inline centered">
+			<div class="form-group">
+				<label for="bet">Starting Bet: </label>
+				<input type="number" id="bet" class="form-control" placeholder="$0.00" />
+			</div>
+			<button type="submit" id="submitButton">
+			Play
+			</button>
+		</form> 
+		<hr id="resultsL" style="display:none;" class="centered" />
+		<h1 style="display:none;" id="resultsH" class="centered">Results</h1> 
+		<table id="results" class="table table-striped" style="display:none;">
+			<tr class="first">
+				<td class="left">Starting Bet</td>
+				<td id="startingBet" class="right"></td>
+			</tr>
+			<tr>
+				<td class="left">Total Rolls Before Going Broke</td>
+				<td id="totalRolls" class="right"></td>
+			</tr>
+			<tr>
+				<td class="left">Highest Amount Won</td>
+				<td id="maxWin" class="right"></td>
+			</tr>
+			<tr>
+				<td class="left">Roll Count at Highest Amount Won</td>
+				<td id="maxWinRolls" class="right"></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+/*
+Name: Lindsay Nickalo
+Email: bradleyL4@winthrop.edu
+Date: September 09, 2019
+Last Modified: September 13, 2019
+Description: External CSS script Austyn's Cafe pages. Part of project completed for Intro to Web Development Course at Dev10.
+*/
+
+
+header {
+	color: #271F30;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	font-family: 'Comic Sans MS', arial;
+}
+
+footer {
+	color: #271F30;
+	padding-top: 12px;
+	padding-bottom: 6px;
+	text-align: center;
+	font-family: 'Comic Sans MS', arial;
+}
+
+body {
+	font-family: 'Comic Sans MS', arial;
+	background-color: #D0FCB3;
+}
+
+a {
+/*	padding-right: 30px;*/
+	margin-right: 30px;
+	color: #8BA6A9;
+	background-color: #271F30;
+}
+
+a:visited {
+	color: #C8AD55;
+	background-color: #271F30;
+}
+
+a:hover {
+	font-weight: bold;
+}
+
+a:active {
+	text-decoration: none;
+}
+
+.centered {
+	text-align: center;
+}
+
+section {
+	margin-left: 30%;
+	margin-right: 30%;
+	text-align: justified;
+}
+
+nav {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: 15px;
+	float: left;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	width: 100%;
+}
+
+.clear-float {
+        clear:both;
+}
+
