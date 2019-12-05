@@ -314,6 +314,8 @@ public class BlackJack {
             }
         return deck;
     }
+    //This method will work through the logic of determining the winner when
+    //give the current scores
     public static String determineWinner(int playerTotal, int playerTotalH, int dealerTotal, int dealerTotalH)
     {
         String winner;
@@ -383,6 +385,8 @@ public class BlackJack {
         }
         return winner;
     }
+    //This method with determine whether the dealer wants to draw another card
+    //It calls on the determineWinner(int, int, int, int) function to do so
     public static boolean anotherCard(int playerTotal, int playerTotalH, int dealerTotal, int dealerTotalH)
     {
         boolean higher;
