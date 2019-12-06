@@ -17,13 +17,9 @@ public class HiddenNuts {
             //This is how I had to handle the null comparison
             //I wonder if there's a better way
             if(hidingSpots[i]==null)
-            {
                 continue;
-            }
             else if(hidingSpots[i].equals("Nut"))
-            {
                 System.out.println("Here's the nut! It's in hiding spot: " + i);
-            }
         }
     }
 }
