@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 public class InterestCalculator {
-    public static void main(String[] args) 
+    public void doInterestCalculator() 
     {
         //These are the calculations we have to run using the defined methods
         double[] userInput = getInput();

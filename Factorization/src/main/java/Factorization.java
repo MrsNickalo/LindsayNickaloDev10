@@ -8,7 +8,7 @@
  */
 import java.util.Scanner;
 public class Factorization {
-    public static void main(String[] args) 
+    public void doFactorization()
     {
         int number;
         Scanner myScanner = new Scanner(System.in);
@@ -51,7 +51,7 @@ public class Factorization {
         {
             System.out.println(number + " is not a prime number.");
         }
-    }
+}
     //this method will check to see if a number is prime
     //(only two factors, one and itself - excludes one itself)
     public static boolean isPrime(int num)
@@ -94,13 +94,14 @@ public class Factorization {
         int[] factorsRough = new int[num];
         //we're going to initialize all values to zero so 
         //that when we go to create the final array of factors
-        //it's easier to check which ones were
+        //it's easier to check which ones were factors
         for(int i=0; i<num; i++)
         {
             factorsRough[i] = 0;
         }
-        //this will track our number of factors
-        int numFactors = 0;
+        //this will track our number of factors, starting with including
+        //the number itself
+        int numFactors = 1;
         //let's check what are factors
         for(int i=1; i<=num/2; i++)
         {

@@ -8,7 +8,7 @@
 import java.util.Random;
 import java.util.Scanner;
 public class LuckySevens {
-    public static void main(String[] args) 
+    public void doLuckySevens() 
     {
         Scanner myScanner = new Scanner(System.in);
         int initialMoney, currentMoney = 0, maxMoney = 0, maxRolls = 0, rolls = 0;
