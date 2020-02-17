@@ -1,6 +1,10 @@
 DTO\Address.class
-UI\View.class
-App.class
 Controller\AddressBookController.class
 UI\UserIO.class
+UI\AddressBookView.class
+DAO\AddressBookDaoException.class
+DAO\AddressBookDaoFileImpl.class
+DTO\Person.class
+App.class
+UI\UserIOConsoleImpl.class
 DAO\AddressBookDao.class

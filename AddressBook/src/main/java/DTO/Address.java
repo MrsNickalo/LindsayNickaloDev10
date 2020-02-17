@@ -11,7 +11,7 @@ public class Address {
     private String city;
     private String state;
     private int zip;
-    //constructor
+    //constructors
     public Address(String s, String c, String st, int z)
     {
         street = s;

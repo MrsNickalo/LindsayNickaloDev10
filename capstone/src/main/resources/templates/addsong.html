@@ -1,0 +1,246 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Add Song</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
+            crossorigin="anonymous">
+        <style>
+            hr {
+                border: 1px solid black;
+            }          
+            .sidenav a {
+                padding: 6px 6px 6px 1px;
+                margin-bottom: 20px;
+                margin-left: 5%;
+                text-decoration: none; 
+                color: Black;
+                display: block;
+                background-color: #C1C8E4;
+                border-color: Black;
+              }
+
+              @media screen and (max-width: 1050px) {
+                .sidenav a {font-size: 2vh;}
+                .col-1 a {font-size: 2vh;}
+              }
+              
+              @media screen and (max-width: 650px) {
+                .sidenav a {font-size: 1vh;}
+                .col-1 a {font-size: 1vh;}
+              }
+              
+              .sidenav a:hover {
+                color: Black;
+                background-color: #D8E0FF;
+                border-color: Black;
+              }
+              
+              footer{
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                color: white;
+                text-align: left;
+              }
+                            
+              .col-1 a{
+                width: 100%;
+                margin-right: 5%;
+                margin-top: 5%;
+                padding: 6px 6px 6px 1px;
+                text-decoration: none;
+                float: right;
+                color: Black;
+                display: block;
+                background-color: #C1C8E4;
+                border-color: Black;
+              }
+              
+              .col-1 a:hover {
+                color: Black;
+                background-color: #D8E0FF;
+                border-color: Black;
+              }
+              #logout{
+                width: 100%;
+                margin-right: 5%;
+                margin-top: 5%;
+                padding: 6px 6px 6px 1px;
+                text-decoration: none;
+                float: right;
+                color: Black;
+                display: block;
+                background-color: #C1C8E4;
+                border-color: Black;
+              }
+              
+              #logout:hover{
+                color: Black;
+                background-color: #D8E0FF;
+                border-color: Black;
+              }
+              
+              .formButtons{
+                margin: 5px;
+                width: 200px;
+                padding: 6px 6px 6px 1px;
+                text-decoration: none;
+                color: Black;
+                display: block;
+                background-color: #C1C8E4;
+                border-color: Black;
+              }
+              
+              .formButtons:hover{
+                color: Black;
+                background-color: #D8E0FF;
+                border-color: Black;
+              }
+        </style>
+    </head>
+    <body style="background: linear-gradient(to bottom, #8860D0 0%, #84CEEB 100%) fixed">
+        <header>
+            <img th:src="@{/images/keyboardlogo.jpg}" style="max-width: 100%"/>
+            <div class="row">
+                <div class="col-10">
+                    <h1 style="text-align:center" class="header">
+                        Add Song
+                    </h1>
+                </div>
+                <div class="col-1">
+                    <div sec:authorize="isAuthenticated()">
+                        <form class="form-inline" 
+                              method="POST" 
+                              action="/logout">
+                            <input type="hidden" 
+                                    th:name="${_csrf.parameterName}" 
+                                    th:value="${_csrf.token}"/>
+                            <button class="btn btn-outline-primary btn-lg" 
+                                  id="logout" 
+                                  type="submit">Logout</button>
+                        </form>
+                    </div>
+                    <div sec:authorize="!isAuthenticated()">
+                        <a href="login" class="btn btn-outline-primary btn-lg">Login</a>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </header>
+        <div class="row">
+            <div class="container col-2">
+                <div class="sidenav">
+                    <a href="home" class="btn btn-outline-primary btn-lg">Main Page</a>
+                    <a href="songlibrary" class="btn btn-outline-primary btn-lg">Song Library</a>
+                    <a href="addsong" class="btn btn-outline-primary btn-lg" sec:authorize="isAuthenticated()">Add Song</a>
+                    <a href="personallibrary" class="btn btn-outline-primary btn-lg" sec:authorize="isAuthenticated()">Personal Library</a>
+                </div>
+            </div>
+            <div class="container col-10" sec:authorize="isAuthenticated()">
+                <form class="form-horizontal" role="form" method="post" action="addsong">
+                    <div class="form-group">
+                        <label for="title" class="col-4 control-label">
+                            Title: 
+                        </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Title"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="artist" class="col-4 control-label">
+                            Artist: 
+                        </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="artist" name="artist" placeholder="Artist"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="year" class="col-4 control-label">
+                            Year: 
+                        </label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" id="year" name="year" placeholder="Year"/>
+                        </div>
+                    </div>
+                    <h4>In order to add a song, you must enter the notes as a JFugue Music String.</h4>
+                    <a href="addsonginstructions" class="formButtons btn btn-outline-primary btn-lg">Show Me How</a>
+                    <div class="form-group">
+                        <label for="soprano" class="col-4 control-label">
+                            Soprano: 
+                        </label>
+                        <div class="col-8">
+                            <textarea rows="10" class="form-control" id="soprano" name="soprano" placeholder="JFugue Music String"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="alto" class="col-4 control-label">
+                            Alto: 
+                        </label>
+                        <div class="col-8">
+                            <textarea rows="10" class="form-control" id="alto" name="alto"placeholder="JFugue Music String"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenor" class="col-4 control-label">
+                            Tenor:
+                        </label>
+                        <div class="col-8">
+                            <textarea rows="10" class="form-control" id="tenor" name="tenor"placeholder="JFugue Music String"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bass" class="col-4 control-label">
+                            Bass: 
+                        </label>
+                        <div class="col-8">
+                            <textarea rows="10" class="form-control" id="bass" name="bass"placeholder="JFugue Music String"></textarea>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="form-group">
+                        <div class="row">
+                            <a href="addsoprano" class="formButtons btn btn-outline-primary btn-lg">Add Soprano</a>
+                            <a href="addalto" class="formButtons btn btn-outline-primary btn-lg">Add Alto</a>
+                            <a href="addtenor" class="formButtons btn btn-outline-primary btn-lg">Add Tenor</a>
+                            <a href="addbass" class="formButtons btn btn-outline-primary btn-lg">Add Bass</a>
+                            <input type="hidden" name="soprano" th:value="${soprano}"/>
+                            <input type="hidden" name="alto" th:value="${alto}"/>
+                            <input type="hidden" name="tenor" th:value="${tenor}"/>
+                            <input type="hidden" name="bass" th:value="${bass}"/>
+                        </div>
+                    </div>
+                    -->
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                    <div class="form-group">
+                        <div class="row">
+                            <input type="submit" class="formButtons btn btn-outline-primary btn-lg" id="submit" value="Add Song"/>
+                            <a href="personallibrary" class="formButtons btn btn-outline-primary btn-lg">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <footer>
+            &copy; Copyright 2020 Lindsay Nickalo. All rights reserved.
+        </footer>
+    
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+            crossorigin="anonymous"></script>
+    </body>
+</html>

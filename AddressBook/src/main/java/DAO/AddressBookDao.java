@@ -1,53 +1,69 @@
 package DAO;
+
+import DTO.Address;
+import DTO.Person;
+import java.util.List;
+import java.util.Set;
+
 /**
  *
  * @author Lindsay Gen10
  * @date Dec 12, 2019
- * AddressBookDao class creates a HashMap with keys of String names and values
- * of Addresses. 
+ * Interface for ClassRosterDao.
  */
-//import necessary objects
-import DTO.Address;
-import java.util.Set;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Collection;
-
-public class AddressBookDao {
-    //attributes
-    private HashMap<String, Address> addressBook = new HashMap<>();
+public interface AddressBookDao {
+    /**
+    * Adds the given address to the address book
+    * and associates it with the given person.
+    * If that person is already in it, it will return that object.
+    * Otherwise, it will return null.
+    * @param person id with which address is to be associated
+    * @param address address to be added to the roster
+    * @return the Address object previously associated with the given person if it exists, null otherwise
+    */
+    Address addAddress(Person person, Address address)
+            throws AddressBookDaoException;
     
-    //methods
-    //method to add address to address book accepting name and address
-    public void addAddress(String name, Address a)
-    {
-        //implementation
-    }
-    //method to view address in address book, given either name or address
-    public void viewAddress(String name)
-    {
-        //implementation
-    }
-    public void viewAddress(Address a)
-    {
-        //implementation
-    }
-    //method to remove entry given either name or address
-    public void removeAddress(String name)
-    {
-        //implementation
-    }
-    public void removeAddress(Address a)
-    {
-        //implementation
-    }
-    //method to edit entry given either name or address
-    public void editAddress(String name)
-    {
-        //implementation
-    }
-    public void editAddress(Address a)
-    {
-        //implementation
-    }
+    /**
+     * Returns a String array containing the 
+     * names of all people in the address book.
+     * @return String array containing the names of all the people in the address book
+     */
+    Set<Person> getAllPeople()
+            throws AddressBookDaoException;
+    
+    /**
+     * Returns the Address object associated with the given person.
+     * Returns null if no such person exists.
+     * @param person name of the person's address to retrieve
+     * @return the Address object associated, null if none
+     */
+    Address getAddress(Person person)
+            throws AddressBookDaoException;    
+    
+    /**
+     * Removes from the address book the address with the associated person.
+     * Returns the Address object that is being removed.
+     * Returns null if none is associated.
+     * @param person id of student to be removed
+     * @return Address object or null if none
+     */
+    Address removeAddress(Person person)
+            throws AddressBookDaoException;
+    
+    /**
+     * Finds the person with matching last name
+     * @param last last name of person to be removed
+     * @return Person object matching
+     */
+    Person findPerson(String last)
+            throws AddressBookDaoException;
+    
+    /**
+     * Returns size of address book
+     * @return integer
+     */
+    int sizeOfBook()
+            throws AddressBookDaoException;
 }
+

@@ -1,95 +1,141 @@
 package Controller;
+
+import DAO.AddressBookDao;
+import DAO.AddressBookDaoException;
+import DTO.Address;
+import DTO.Person;
+import UI.AddressBookView;
+import java.util.List;
+import java.util.Set;
+
 /**
  *
  * @author Lindsay Gen10
  * @date Dec 12, 2019
  * Controller class for the Address Book application
  */
-import DAO.AddressBookDao;
-import UI.View;
-public class AddressBookController {
+public class AddressBookController 
+{
     //attributes
-    AddressBookDao addressBook = new AddressBookDao();
-    String name, street, city, state;
-    int zip;
-    View sys = new View();
-    //methods
-    //method to display the welcome
-    public void intro()
+    AddressBookView view;
+    AddressBookDao dao;
+    //constructor with dependency injection
+    public AddressBookController(AddressBookDao dao, AddressBookView view)
     {
-        //implementation
-        sys.print("Intro");
+        this.dao = dao;
+        this.view = view;
     }
-    //method to display the menu
-    public void menu()
+    //method to execute the program
+    public void run()
     {
-        //implementation
-        sys.print("Menu");
+        boolean keepGoing = true;
+        try
+        {
+            while(keepGoing)
+            {
+                int menuSelection = getMenuSelection();
+                switch(menuSelection)
+                {
+                    case 1:
+                        addAddress();
+                        break;
+                    case 2:
+                        removeAddress();
+                        break;
+                    case 3:
+                        listPeople();
+                        break;
+                    case 4:
+                        viewAddress();
+                        break;
+                    case 5:
+                        viewSize();
+                        break;
+                    case 6:
+                        viewAll();
+                        break;
+                    case 7:
+                        keepGoing = false;
+                        break;
+                    default:
+                        unknownCommand();
+                }
+            }
+            exitMessage();
+        }
+        catch(AddressBookDaoException e)
+        {
+            view.displayErrorMessage(e.getMessage());
+        }
     }
-    //method to add Entity
-    public void addEntity()
+    //method to print menu and get user selection
+    private int getMenuSelection()
     {
-        //implementation
-        sys.print("Add");
+        return view.printMenuAndGetSelection();
     }
-    //method to view Entity
-    public void viewEntity()
+    //method to create student
+    private void addAddress()throws AddressBookDaoException 
     {
-        //implementation
-        sys.print("View");
+        view.displayAddAddressBanner();
+        Person newPerson = view.getNewPersonInfo();
+        Address newAddress = view.getNewAddressInfo();
+        dao.addAddress(newPerson, newAddress);
+        view.displayAddSuccessBanner();
     }
-    //method to remove Entity
-    public void removeEntity()
+    //method to remove address
+    private void removeAddress()throws AddressBookDaoException 
     {
-        //implementation
-        sys.print("Remove");
+        view.displayRemoveAddressBanner();
+        String lastName = view.getLastName();
+        Person removePerson = dao.findPerson(lastName);
+        dao.removeAddress(removePerson);
+        view.displayRemoveSuccessBanner();
     }
-    //method to edit Entity
-    public void editEntity()
+    //method to display all people listed in book
+    private void listPeople()throws AddressBookDaoException 
     {
-        //implementation
-        sys.print("Edit");
+        view.displayDisplayPeopleBanner();
+        Set<Person> peopleList = dao.getAllPeople();
+        view.displayAddressList(peopleList);
     }
-    //method to view all Entities
-    public void viewAll()
+    //method to view single address
+    private void viewAddress() throws AddressBookDaoException
     {
-        //implementation
-        sys.print("View All");
+        view.displayDisplayAddressBanner();
+        String lastName = view.getLastName();
+        Person currentPerson = dao.findPerson(lastName);
+        Address currentAddress = dao.getAddress(currentPerson);
+        view.displayPerson(currentPerson);
+        view.displayAddress(currentAddress);
+        view.displayBanner();
     }
-    //method to view number of Entities
-    public void numberEntities()
+    //method to view size of address book
+    private void viewSize() throws AddressBookDaoException
     {
-        //implementation
-        sys.print("Number");
+        view.displaySizeBanner();
+        int size = dao.sizeOfBook();
+        view.displaySize(size);
     }
-    //method to save Entities to file
-    public void saveTo()
+    //method to view all entries
+    private void viewAll() throws AddressBookDaoException
     {
-        //implementation
-        sys.print("Save to");
+        view.displayDisplayAllBanner();
+        Set<Person> peopleList = dao.getAllPeople();
+        for(Person currentPerson : peopleList)
+        {
+            view.displayPerson(currentPerson);
+            view.displayAddress(dao.getAddress(currentPerson));
+        }
+        view.displayBanner();
     }
-    //method to read Entities from file
-    public void readFrom()
+    //method to deal with unknown comman
+    private void unknownCommand()
     {
-        //implementation
-        sys.print("Read from");
+        view.displayUnknownCommandBanner();
     }
-    //method to display message on exit
-    public void exit()
+    //method to display exit message
+    private void exitMessage()
     {
-        //implementation
-        sys.print("Exitting...");
-    }
-    //method to get integer input
-    public int inputInt()
-    {
-        //implementation
-        return sys.readInt("Input an integer");
-    }
-    //method to get String input
-    public String inputString()
-    {
-        //implementation
-        return "String input";
+        view.displayExitBanner();
     }
 }

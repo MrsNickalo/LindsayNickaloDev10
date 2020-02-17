@@ -1,0 +1,9 @@
+UI\UserIO.class
+DAO\MP3LibraryDaoFileImpl.class
+DTO\MP3.class
+UI\MP3LibraryView.class
+App.class
+Controller\MP3LibraryController.class
+DAO\MP3LibraryDao.class
+UI\UserIOConsoleImpl.class
+DAO\MP3LibraryDaoException.class
