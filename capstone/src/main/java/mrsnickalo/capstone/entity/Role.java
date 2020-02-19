@@ -8,7 +8,6 @@ import java.util.Objects;
  * @date Feb 13, 2020
  */
 
-
 public class Role 
 {
     private int id;

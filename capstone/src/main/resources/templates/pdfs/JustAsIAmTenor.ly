@@ -6,9 +6,9 @@ fis8 g8  a2 a4
   a2 fis8 g8  a2 
   \bar "" \break 
 a4  a2 d'4  d'2 
- d'4  b4 cis'8 d'4 
+ d'4  b4. cis'8 d'4 
   d'2 d'4  a2 a4 
-  a2  a2  a2 r4 
+  a2.  a2.  a2 r4 
    }
  \layout { 
  \context { 

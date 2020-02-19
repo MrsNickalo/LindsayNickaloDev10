@@ -156,9 +156,17 @@
                 </div>
             </div>
             <div class="container col-10">
-                <h3 th:if="${error}">
-                    User with that username already exists!
-                </h3>
+                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" 
+                       th:each="error : ${errors}"
+                       th:text="${error.message}">
+                        Error Message
+                    </p>
+                    <p class="alert alert-danger"
+                        th:if="${error}">
+                           Username already in use!
+                    </p>
+                </div>
                 <form class="form-horizontal" role="form" method="post" action="signup">
                     <div class="form-group">
                         <label for="username" class="col-4 control-label">
@@ -173,7 +181,7 @@
                             Password 
                         </label>
                         <div class="col-8">
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Password"/>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
                         </div>
                     </div>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

@@ -168,33 +168,50 @@
                 </div>
             </div>
             <div class="container col-10">
+                <form>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <h2 th:text="${song.title} + ' - ' + ${song.artist} + ' (' + ${song.year} + ')'">Song Title</h2>
                     </div>
                     <div class="col-2">
-                        <select name="tempo" id="tempo">
+                        <label for="tempo" class="col-4 control-label">
+                            Tempo:
+                        </label>
+                        <select name="tempo" id="tempo" class="form-control">
                             <option th:each="tempo : ${tempos}"
                                     th:value="${tempo.tempoId}"
-                                th:text="${tempo.tempoId} + ' - ' + ${tempo.bpm}">
+                                th:text="${tempo.tempoId} + ' - ' + ${tempo.bpm}"
+                                th:selected="${tempo.bpm == song.bpm}">
                                         Tempo
                             </option>
                         </select>                        
-                    </div>
-                    <div class="col-2">
-                        <select name="instrument" id="instrument">
-                            <option th:each="instrument : ${instruments}"
-                                    th:value="${instrument.InstrumentId}"
-                                th:text="${instrument.instrumentName}">
-                                        Tempo
-                            </option>
+                        <label for="instrument" class="col-4 control-label">
+                            Instrument:
+                        </label>
+                        <select name="instrument" id="instrument" class="form-control">
+                            <optgroup th:each="header : ${instruments}"
+                                      th:label="${header.key.Category}">
+                                <option th:each="instrument : ${header.value}"
+                                        th:value="${instrument.InstrumentId}"
+                                    th:text="${instrument.instrumentName}"
+                                    th:selected="${instrument.InstrumentId == 0}">
+                                            Instrument
+                                </option>
+                            </optgroup>
                         </select>                        
                     </div>
                     <div class="col-2">
+                        <!--
                         <a href="#"
-                            th:href="@{'playallP?id=' + ${song.songId}}" class="btn btn-outline-primary btn-lg playButton">
+                            th:href="@{'playall?id=' + ${song.songId}}" class="btn btn-outline-primary btn-lg playButton">
                             Play All
                         </a>
+                        -->
+                        <input type="hidden" id="id" name="id" th:value="${song.songId}"/>
+                        <button type="submit" th:formaction="@{/playallP}" 
+                                class="btn btn-outline-primary btn-lg playButton">
+                            Play All
+                        </button>
                     </div>
                 </div>
                 <div class="row">
@@ -210,10 +227,16 @@
                                 <img th:src="@{${'/images/' + #strings.replace(song.title,' ','') + 'Soprano.png'}}" style="max-width: 100%"/>
                             </div>
                             <div class="col float-right">
+                                <!--
                                 <a href="#"
                                     th:href="@{'playsopranoP?id=' + ${song.songId}}" class="btn btn-outline-primary btn-lg playButton">
                                     Play
                                 </a>
+                                -->
+                                <button type="submit" th:formaction="@{/playsopranoP}" 
+                                    class="btn btn-outline-primary btn-lg playButton">
+                                    Play
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -231,10 +254,16 @@
                                 <img th:src="@{${'/images/' + #strings.replace(song.title,' ','') + 'Alto.png'}}" style="max-width: 100%"/>
                             </div>
                             <div class="col float-right">
+                                <!--
                                 <a href="#"
                                     th:href="@{'playaltoP?id=' + ${song.songId}}" class="btn btn-outline-primary btn-lg playButton">
                                     Play
                                 </a>
+                                -->
+                                <button type="submit" th:formaction="@{/playaltoP}" 
+                                    class="btn btn-outline-primary btn-lg playButton">
+                                    Play
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -252,10 +281,16 @@
                                 <img th:src="@{${'/images/' + #strings.replace(song.title,' ','') + 'Tenor.png'}}" style="max-width: 100%"/>
                             </div>
                             <div class="col float-right">
+                                <!--
                                 <a href="#"
                                     th:href="@{'playtenorP?id=' + ${song.songId}}" class="btn btn-outline-primary btn-lg playButton">
                                     Play
                                 </a>
+                                -->
+                                <button type="submit" th:formaction="@{/playtenorP}" 
+                                    class="btn btn-outline-primary btn-lg playButton">
+                                    Play
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -273,14 +308,21 @@
                                 <img th:src="@{${'/images/' + #strings.replace(song.title,' ','') + 'Bass.png'}}" style="max-width: 100%"/>
                             </div>
                             <div class="col float-right">
+                                <!--
                                 <a href="#"
                                     th:href="@{'playbassP?id=' + ${song.songId}}" class="btn btn-outline-primary btn-lg playButton">
                                     Play
                                 </a>
+                                -->
+                                <button type="submit" th:formaction="@{/playbassP}" 
+                                    class="btn btn-outline-primary btn-lg playButton">
+                                    Play
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
         <footer>

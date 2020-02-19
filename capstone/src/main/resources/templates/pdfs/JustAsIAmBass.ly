@@ -3,11 +3,11 @@ d4  d2 d4  d2
  d4  a,2 a,4  d2 
  d4  a2 a4  a2 
  a,4  d2 d4  d2 
- d4  d2 d4  d4 
+ d4  d2 d4  d4. 
   \bar "" \break 
 e8 fis4  g2 g4 
   g2 g4  d2 d4 
-  d2 d4  a2  a,2 
+  d2 d4  a2.  a,2. 
   d2 r4   }
  \layout { 
  \context { 

@@ -228,28 +228,43 @@ public class LilyPad
             }
             boolean sharp = s.contains("#");
             boolean flat = s.contains("b");
-            boolean dot = s.contains(".");
-            List<Integer> length = new ArrayList<>();
-            s = s.replaceAll("[^qhwis]", "");
+            //boolean dot = s.contains(".");
+            List<String> length = new ArrayList<>();
+            s = s.replaceAll("[^qhwis.]", "");
             switch(s)
             {
                 case "":
-                    length.add(4);
+                    length.add("4");
                     break;
                 case "q":
-                    length.add(4);
+                    length.add("4");
                     break;
                 case "h":
-                    length.add(2);
+                    length.add("2");
                     break;
                 case "w":
-                    length.add(1);
+                    length.add("1");
                     break;
                 case "i":
-                    length.add(8);
+                    length.add("8");
                     break;
                 case "s":
-                    length.add(16);
+                    length.add("16");
+                    break;
+                case "q.":
+                    length.add("4.");
+                    break;
+                case "h.":
+                    length.add("2.");
+                    break;
+                case "w.":
+                    length.add("1.");
+                    break;
+                case "i.":
+                    length.add("8.");
+                    break;
+                case "s.":
+                    length.add("16.");
                     break;
                 default:
                     char[] array = s.toCharArray();
@@ -258,19 +273,22 @@ public class LilyPad
                         switch(c)
                         {
                             case 'q':
-                                length.add(4);
+                                length.add("4");
                                 break;
                             case 'h':
-                                length.add(2);
+                                length.add("2");
                                 break;
                             case 'w':
-                                length.add(1);
+                                length.add("1");
                                 break;
                             case 'i':
-                                length.add(8);
+                                length.add("8");
                                 break;
                             case 's':
-                                length.add(16);
+                                length.add("16");
+                                break;
+                            case '.':
+                                length.add(".");
                                 break;
                             default:
                         }
@@ -278,6 +296,11 @@ public class LilyPad
             }
             for(int i=0; i<length.size(); i++)
             {
+                if(length.get(i).equals("."))
+                {
+                    output += ".";
+                    continue;
+                }
                 output += note;
                 if(sharp)
                 {

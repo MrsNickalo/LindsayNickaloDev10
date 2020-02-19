@@ -113,43 +113,51 @@ public class StandardServiceLayerImpl implements ServiceLayer
         return songs.findByTitle(title);
     }
     
-    @Override
+        @Override
     public void playSong(Song song, String part, Instrument instrument)
     {
         Player player = new Player();
         Pattern pattern;
+        String instrumentString = " I" + instrument.getInstrumentId() + " ";
+        String p = "";
         switch(part)
         {
             case "soprano":
-                pattern = new Pattern(song.getSoprano());
+                p += instrumentString + song.getSoprano();
                 break;
             case "alto":
-                pattern = new Pattern(song.getAlto());
+                p += instrumentString + song.getAlto();
                 break;
             case "tenor":
-                pattern = new Pattern(song.getTenor());
+                p += instrumentString + song.getTenor();
                 break;
             case "bass":
-                pattern = new Pattern(song.getBass());
+                p += instrumentString + song.getBass();
                 break;
             default:
-                pattern = new Pattern("V0 " + song.getSoprano() + " V1 " + 
-                        song.getAlto() + " V2 " + song.getTenor() + " V3 " +
-                        song.getBass());
+                if(!song.getSoprano().isEmpty())
+                {
+                    p += " V0 " + instrumentString + song.getSoprano();
+                }
+                if(!song.getAlto().isEmpty())
+                {
+                    p += " V1 " + instrumentString + song.getAlto();
+                }
+                if(!song.getTenor().isEmpty())
+                {
+                    p += " V2 " + instrumentString + song.getTenor();
+                }
+                if(!song.getBass().isEmpty())
+                {
+                    p += " V3 " + instrumentString + song.getBass();
+                }
         }
-        // KEEP WORKING ON ADDING RHYTHM
-//        Rhythm rhythm = new Rhythm();
-//        int measures = (int) song.getSoprano().chars().filter(ch -> ch=='|').count();
-//        String ry = "";
-//        for(int i=0; i<measures; i++)
-//        {
-//            ry += " O O O";
-//        }
-//        rhythm.addLayer(ry);
-//        Pattern r = rhythm.getPattern();
-//        r.setTempo(song.getBpm());
+        if(p.equals(""))
+        {
+            return;
+        }
+        pattern = new Pattern(p);
         pattern.setTempo(song.getBpm());
-        pattern.setInstrument(instrument.getInstrumentId());
         player.play(pattern);
     }
     

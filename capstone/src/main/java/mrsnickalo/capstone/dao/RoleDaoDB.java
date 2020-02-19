@@ -40,15 +40,17 @@ public class RoleDaoDB implements RoleDao
     @Override
     public Role addRole(Role role) 
     {
-        final String INSERT_ROLE = "INSERT INTO role (role) VALUES (?);";
-        jdbc.update(INSERT_ROLE, role.getRole());
-        return findById(role.getId());
+        // to enable this feature, uncomment the code
+//        final String INSERT_ROLE = "INSERT INTO role (role) VALUES (?);";
+//        jdbc.update(INSERT_ROLE, role.getRole());
+//        return findById(role.getId());
+        return null;
     }
 
     @Override
     public List<Role> findAll() 
     {
-        final String FIND_ROLES = "SELECT roleId, rold FROM role;";
+        final String FIND_ROLES = "SELECT roleId, role FROM role;";
         List<Role> roles = jdbc.query(FIND_ROLES, new RoleMapper());
         return roles;
     }
@@ -56,15 +58,19 @@ public class RoleDaoDB implements RoleDao
     @Override
     public void updateRole(Role role) 
     {
-        final String UPDATE_ROLE = "UPDATE role SET role = ? WHERE roleId = ?;";
-        jdbc.update(UPDATE_ROLE, role.getRole(), role.getId());
+        // to enable this feature, uncomment the code
+//        final String UPDATE_ROLE = "UPDATE role SET role = ? WHERE roleId = ?;";
+//        jdbc.update(UPDATE_ROLE, role.getRole(), role.getId());
     }
 
     @Override
     public void deleteRole(int id) 
     {
-        final String DELETE_ROLE = "DELETE FROM role WHERE roleId = ?;";
-        jdbc.update(DELETE_ROLE, id);
+        // to enable this feature, uncomment the code
+//        final String DELETE_ROLE_USER = "DELETE FROM UserRole WHERE roleId = ?;";
+//        jdbc.update(DELETE_ROLE_USER, id);
+//        final String DELETE_ROLE = "DELETE FROM role WHERE roleId = ?;";
+//        jdbc.update(DELETE_ROLE, id);
     }
     
     public static final class RoleMapper implements RowMapper<Role>

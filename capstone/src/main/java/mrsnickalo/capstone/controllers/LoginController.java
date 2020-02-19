@@ -1,8 +1,10 @@
 package mrsnickalo.capstone.controllers;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import mrsnickalo.capstone.config.PasswordEncoder;
 import mrsnickalo.capstone.entity.Role;
 import mrsnickalo.capstone.entity.User;
@@ -28,6 +30,8 @@ public class LoginController
     @Autowired
     PasswordEncoder encoder;
     
+    Set<ConstraintViolation<User>> addUserErrors = new HashSet<>();
+    
     @GetMapping("/login")
     public String showLoginForm()
     {
@@ -36,9 +40,9 @@ public class LoginController
     }
     
     @GetMapping("/signup")
-    public String showSignUpForm()
+    public String showSignUpForm(Model model)
     {
-        
+        model.addAttribute("errors", addUserErrors);
         return "signup";
     }
     
@@ -47,7 +51,7 @@ public class LoginController
     {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(encoder.encodePassword(password));
+        user.setPassword(password);
         user.setEnabled(true);
         Set<Role> roles = new HashSet<>();
         Role role = new Role();
@@ -55,15 +59,22 @@ public class LoginController
         role.setRole("ROLE_USER");
         roles.add(role);
         user.setRoles(roles);
-        try
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        addUserErrors = validate.validate(user);
+        if(addUserErrors.isEmpty())
         {
-            User newUser = serviceP.addUser(user);
+            user.setPassword(encoder.encodePassword(password));
+            try
+            {
+                User newUser = serviceP.addUser(user);
+            }
+            catch(Exception e)
+            {
+                model.addAttribute("error", true);
+                return "signup";
+            }
+            return "redirect:/login";
         }
-        catch(Exception e)
-        {
-            model.addAttribute("error", true);
-            return "signup";
-        }
-        return "redirect:/home";
+        return "redirect:/signup";
     }
 }

@@ -46,7 +46,7 @@ public class PrivateSongDaoDB implements SongDao
         try
         {
             final String FIND_SONG = "SELECT songID, songTitle, songArtist, songYear, soprano, "
-                    + "alto, tenor, bass, bpm FROM standardSongLibrary WHERE songTitle = ?;";
+                    + "alto, tenor, bass, bpm FROM privateSongLibrary WHERE songTitle = ?;";
             List<Song> song = jdbc.query(FIND_SONG, new SongMapper(), title);
             return song;
         }

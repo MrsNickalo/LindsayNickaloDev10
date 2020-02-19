@@ -1,9 +1,11 @@
 package mrsnickalo.capstone.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
-import mrsnickalo.capstone.dao.CategoryDao;
-import mrsnickalo.capstone.dao.LilyPad;
+import mrsnickalo.capstone.entity.Category;
 import mrsnickalo.capstone.entity.Instrument;
 import mrsnickalo.capstone.entity.Song;
 import mrsnickalo.capstone.entity.Tempo;
@@ -13,10 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -30,8 +28,6 @@ public class StandardController
 {
     @Autowired
     StandardServiceLayerImpl service;
-    
-    int counter = 0;
     
     @Autowired
     LilyPadService lilypad;
@@ -49,15 +45,7 @@ public class StandardController
     @GetMapping({"/","/home"})
     public String displayHome(Model model)
     {
-        if(counter == 0)
-        {
-//            List<Song> songs = service.findAllSongs();
-//            for(Song song : songs)
-//            {
-//                lilypad.createLilyPad(song);
-//            }
-        }
-        counter++;
+        
         return "home";
     }
     
@@ -75,58 +63,72 @@ public class StandardController
         Song song = service.findByIdSong(id);
         List<Tempo> tempos = service.findAllTempos();
         List<Instrument> instruments = service.findAllInstruments();
+        List<Category> categories = service.findAllCategories();
+        Map<Category, List<Instrument>> categoryMap = new HashMap<>();
+        for(Category c : categories)
+        {
+            List<Instrument> list = new ArrayList<>();
+            for(Instrument i : instruments)
+            {
+                if(i.getCategoryId() == c.getCategoryId())
+                {
+                    list.add(i);
+                }
+            }
+            categoryMap.put(c, list);
+        }
         model.addAttribute("song", song);
         model.addAttribute("tempos", tempos);
-        model.addAttribute("instruments", instruments);
+        model.addAttribute("instruments", categoryMap);
         return "playsong";
     }
     
     @GetMapping("/playsoprano")
-    public String playSoprano(int id, @RequestParam String tempo, @RequestParam String instrument)
+    public String playSoprano(Integer id, String tempo, Integer instrument)
     {
         Song song = service.findByIdSong(id);
         Tempo t = service.findByIdTempo(tempo);
         song.setBpm(t.getBpm());
-        Instrument i = service.findByIdInstrument(Integer.parseInt(instrument));
+        Instrument i = service.findByIdInstrument(instrument);
         service.playSong(song, "soprano", i);
         return "redirect:/playsong?id=" + song.getSongId();
     }
     
     @GetMapping("/playalto")
-    public String playAlto(int id, @RequestParam String tempo, @RequestParam String instrument)
+    public String playAlto(Integer id, String tempo, Integer instrument)
     {
         Song song = service.findByIdSong(id);
         Tempo t = service.findByIdTempo(tempo);
         song.setBpm(t.getBpm());
-        Instrument i = service.findByIdInstrument(Integer.parseInt(instrument));
+        Instrument i = service.findByIdInstrument(instrument);
         service.playSong(song, "alto", i);
         return "redirect:/playsong?id=" + song.getSongId();
     }
     
     @GetMapping("/playtenor")
-    public String playTenor(int id, @RequestParam String tempo, @RequestParam String instrument)
+    public String playTenor(Integer id, String tempo, Integer instrument)
     {
         Song song = service.findByIdSong(id);
         Tempo t = service.findByIdTempo(tempo);
         song.setBpm(t.getBpm());
-        Instrument i = service.findByIdInstrument(Integer.parseInt(instrument));
+        Instrument i = service.findByIdInstrument(instrument);
         service.playSong(song, "tenor", i);
         return "redirect:/playsong?id=" + song.getSongId();
     }
     
     @GetMapping("/playbass")
-    public String playBass(int id, @RequestParam String tempo, @RequestParam String instrument)
+    public String playBass(Integer id, String tempo, Integer instrument)
     {
         Song song = service.findByIdSong(id);
         Tempo t = service.findByIdTempo(tempo);
         song.setBpm(t.getBpm());
-        Instrument i = service.findByIdInstrument(Integer.parseInt(instrument));
+        Instrument i = service.findByIdInstrument(instrument);
         service.playSong(song, "bass", i);
         return "redirect:/playsong?id=" + song.getSongId();
     }
     
     @GetMapping("/playall")
-    public String playSong(Integer id, @RequestParam String tempo, @RequestParam Integer instrument)
+    public String playSong(Integer id, String tempo, Integer instrument)
     {
         Song song = service.findByIdSong(id);
         Tempo t = service.findByIdTempo(tempo);

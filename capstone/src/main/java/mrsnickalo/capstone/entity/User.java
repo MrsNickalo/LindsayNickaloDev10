@@ -2,10 +2,9 @@ package mrsnickalo.capstone.entity;
 
 import java.util.Objects;
 import java.util.Set;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -17,9 +16,11 @@ import org.springframework.data.annotation.Id;
 public class User 
 {
     @Id
+    @NotBlank(message = "Please enter a username.")
+    @Size(max = 30, message = "Username must be less than 30 characters.")
     String username;
 
-    @NotNull
+    @NotBlank(message = "Please enter a password.")
     String password;
     
     @NotNull

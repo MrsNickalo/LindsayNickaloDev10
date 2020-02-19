@@ -2,11 +2,11 @@
 c'4  c'4 g'4 g'4 
  f'4  ees'4 d'4 c'4 
  bes4  c'4 d'4 ees'4 
- f'4  g'2 c'4  c'4 
+ f'4  g'2. c'4  c'4 
  g'4 g'4 f'4  ees'4 
   \bar "" \break 
 d'4 c'4 bes4  c'4 
- d'4 ees'4 f'4  g'2 
+ d'4 ees'4 f'4  g'2. 
  g'4  aes'4 f'4 g'4 
  aes'4  bes'4 c''4 g'4 
  f'4  ees'4 c'4 d'4 
@@ -18,7 +18,7 @@ ees'4  f'2 ees'4 f'4
  ees'4 f'4  g'4 aes'4 
   \bar "" \break 
 bes'4 c''4  g'4 f'4 
- ees'4 d'4  c'2  }
+ ees'4 d'4  c'2.  }
  \layout { 
  \context { 
  \score 

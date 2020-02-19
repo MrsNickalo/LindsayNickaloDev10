@@ -1,9 +1,13 @@
 package mrsnickalo.capstone.entity;
 
 import java.util.Objects;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -15,12 +19,15 @@ import org.springframework.data.annotation.Id;
 public class Song 
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     int songId;
     
-    @NotNull(message = "Please enter a title.")
+    @NotBlank(message = "Please enter a title.")
+    @Size(max = 250, message = "Song title too long!")
     String title;
     
-    @NotNull(message = "Please enter an artist.")
+    @NotBlank(message = "Please enter an artist.")
+    @Size(max = 250, message = "Song artist too long!")
     String artist;
     
     @Min(1000)

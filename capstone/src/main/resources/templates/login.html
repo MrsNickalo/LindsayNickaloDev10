@@ -133,9 +133,12 @@
                 </div>
             </div>
             <div class="container col-10">
-                <h3 th:if="${#request.getParameter('login_error') == '1'}">
-                    Wrong id or password!
-                </h3>
+                <div class="col-12 m-1 text-center">
+                    <p class="alert alert-danger"
+                       th:if="${#request.getParameter('login_error') == '1'}">
+                        Wrong username or password!
+                    </p>
+                </div>
                 <form class="form-horizontal" role="form" method="post" action="login">
                     <div class="form-group">
                         <label for="username" class="col-4 control-label">
@@ -150,7 +153,7 @@
                             Password 
                         </label>
                         <div class="col-8">
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Password"/>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password"/>
                         </div>
                     </div>
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

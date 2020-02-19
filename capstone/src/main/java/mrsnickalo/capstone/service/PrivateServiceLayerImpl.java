@@ -116,37 +116,38 @@ public class PrivateServiceLayerImpl implements ServiceLayer
     {
         Player player = new Player();
         Pattern pattern;
+        String instrumentString = " I" + instrument.getInstrumentId() + " ";
         String p = "";
         switch(part)
         {
             case "soprano":
-                p += song.getSoprano();
+                p += instrumentString + song.getSoprano();
                 break;
             case "alto":
-                p += song.getAlto();
+                p += instrumentString + song.getAlto();
                 break;
             case "tenor":
-                p += song.getTenor();
+                p += instrumentString + song.getTenor();
                 break;
             case "bass":
-                p += song.getBass();
+                p += instrumentString + song.getBass();
                 break;
             default:
                 if(!song.getSoprano().isEmpty())
                 {
-                    p += " V0 " + song.getSoprano();
+                    p += " V0 " + instrumentString + song.getSoprano();
                 }
                 if(!song.getAlto().isEmpty())
                 {
-                    p += " V1 " + song.getAlto();
+                    p += " V1 " + instrumentString + song.getAlto();
                 }
                 if(!song.getTenor().isEmpty())
                 {
-                    p += " V2 " + song.getTenor();
+                    p += " V2 " + instrumentString + song.getTenor();
                 }
                 if(!song.getBass().isEmpty())
                 {
-                    p += " V3 " + song.getBass();
+                    p += " V3 " + instrumentString + song.getBass();
                 }
         }
         if(p.equals(""))
@@ -155,7 +156,6 @@ public class PrivateServiceLayerImpl implements ServiceLayer
         }
         pattern = new Pattern(p);
         pattern.setTempo(song.getBpm());
-        pattern.setInstrument(instrument.getInstrumentId());
         player.play(pattern);
     }
     
@@ -187,5 +187,15 @@ public class PrivateServiceLayerImpl implements ServiceLayer
     public List<User> findAllUsers()
     {
         return users.findAll();
+    }
+    
+    public User findByIdUser(String username)
+    {
+        return users.findById(username);
+    }
+    
+    public void deleteUser(String username)
+    {
+        users.deleteUser(username);
     }
 }
