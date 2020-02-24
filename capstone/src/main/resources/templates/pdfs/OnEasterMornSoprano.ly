@@ -55,7 +55,7 @@ e'4 d'4  a'2 g'4
   \bar "" \break 
 f'4  e'2 g'4  g'4 
  f'4 b4  c'2.  d'2 
- f'4  c''2~ .c''2~ . r1 
+ f'4  c''2.~~ c''2.~~  r1 
   }
  \layout { 
  \context { 

@@ -1,8 +1,18 @@
 package mrsnickalo.capstone.entity;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -34,12 +44,16 @@ public class Song
     @Max(2020) //will modify to be whatever current year is later
     int year;
     
+    @MusicStringConstraint(message = "Invalid JFugue Music String for soprano!")
     String soprano;
     
+    @MusicStringConstraint(message = "Invalid JFugue Music String for alto!")
     String alto;
     
+    @MusicStringConstraint(message = "Invalid JFugue Music String for tenor!")
     String tenor;
     
+    @MusicStringConstraint(message = "Invalid JFugue Music String for bass!")
     String bass;
     
     int bpm;
@@ -250,5 +264,32 @@ public class Song
         return true;
     }
     
+    @Documented
+    @Constraint(validatedBy = MusicStringValidator.class)
+    //@Target( { ElementType.METHOD, ElementType.FIELD })
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface MusicStringConstraint 
+    {
+        String message() default "Please enter valid JFugue Music Strings!";
+        Class<?>[] groups() default {};
+        Class<? extends Payload>[] payload() default {};
+    }
+    
+    static public class MusicStringValidator implements ConstraintValidator<MusicStringConstraint, String> 
+    {
+        @Override
+        public void initialize(MusicStringConstraint musicString) 
+        {
+
+        }
+ 
+        @Override
+        public boolean isValid(String musicString, ConstraintValidatorContext cxt) 
+        {
+            musicString = musicString.replaceAll("[ABCDEFG#b0123456789.qhwisR|]", "").trim();
+            return musicString.length()< 1;
+        }
+    }
     
 }

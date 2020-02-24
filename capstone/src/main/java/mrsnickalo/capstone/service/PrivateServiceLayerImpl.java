@@ -198,4 +198,5 @@ public class PrivateServiceLayerImpl implements ServiceLayer
     {
         users.deleteUser(username);
     }
+    
 }

@@ -1,6 +1,7 @@
 package mrsnickalo.capstone.controllers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,7 @@ public class StandardController
     {
         Song song = service.findByIdSong(id);
         List<Tempo> tempos = service.findAllTempos();
+        Collections.sort(tempos);
         List<Instrument> instruments = service.findAllInstruments();
         List<Category> categories = service.findAllCategories();
         Map<Category, List<Instrument>> categoryMap = new HashMap<>();
@@ -80,6 +82,30 @@ public class StandardController
         model.addAttribute("song", song);
         model.addAttribute("tempos", tempos);
         model.addAttribute("instruments", categoryMap);
+        boolean sopranoExists = true;
+        if(song.getSoprano() == null || song.getSoprano().isEmpty())
+        {
+            sopranoExists = false;
+        }
+        model.addAttribute("sopranoExists", sopranoExists);
+        boolean altoExists = true;
+        if(song.getAlto() == null || song.getAlto().isEmpty())
+        {
+            altoExists = false;
+        }
+        model.addAttribute("altoExists", altoExists);
+        boolean tenorExists = true;
+        if(song.getTenor() == null || song.getTenor().isEmpty())
+        {
+            tenorExists = false;
+        }
+        model.addAttribute("tenorExists", tenorExists);
+        boolean bassExists = true;
+        if(song.getBass() == null || song.getBass().isEmpty())
+        {
+            bassExists = false;
+        }
+        model.addAttribute("bassExists", bassExists);
         return "playsong";
     }
     

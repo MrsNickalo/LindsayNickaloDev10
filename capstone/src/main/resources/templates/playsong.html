@@ -214,7 +214,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:if="${sopranoExists}">
                     <div class="col-12">
                         <h2>Soprano</h2>
                         <div class="col-10">
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:if="${altoExists}">
                     <div class="col-12">
                         <h2>Alto</h2>
                         <div class="col-10">
@@ -268,7 +268,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:if="${tenorExists}">
                     <div class="col-12">
                         <h2>Tenor</h2>
                         <div class="col-10">
@@ -295,7 +295,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:if="${bassExists}">
                     <div class="col-12">
                         <h2>Bass</h2>
                         <div class="col-10">

@@ -10,7 +10,7 @@ import org.springframework.data.annotation.Id;
  * @date Feb 5, 2020
  */
 
-public class Tempo 
+public class Tempo implements Comparable<Tempo>
 {
     @Id
     String tempoId;
@@ -73,6 +73,24 @@ public class Tempo
         }
         return true;
     }
+
+    @Override
+    public int compareTo(Tempo t)
+    {
+        if(this.getBpm() > t.getBpm())
+        {
+            return 1;
+        }
+        else if(this.getBpm() < t.getBpm())
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
     
     
 }

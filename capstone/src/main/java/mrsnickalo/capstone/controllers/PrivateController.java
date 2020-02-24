@@ -2,11 +2,13 @@ package mrsnickalo.capstone.controllers;
 
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -40,6 +42,16 @@ public class PrivateController
     @Autowired
     LilyPadService lilypad;
     
+    @PostConstruct
+    public void fillLibrary()
+    {
+        List<Song> songs = service.findAllSongs();
+        for(Song song : songs)
+        {
+            lilypad.createLilypad(song);
+        }
+    }
+    
     Set<ConstraintViolation<Song>> addSongErrors = new HashSet<>();
     Set<ConstraintViolation<Song>> updateSongErrors = new HashSet<>();
     
@@ -47,6 +59,9 @@ public class PrivateController
     public String displayAddSong(Model model)
     {
         model.addAttribute("errors", addSongErrors);
+        List<Tempo> tempos = service.findAllTempos();
+        Collections.sort(tempos);
+        model.addAttribute("tempos", tempos);
         return "addsong";
     }
     
@@ -109,6 +124,9 @@ public class PrivateController
         model.addAttribute("errors", updateSongErrors);
         Song song = service.findByIdSong(id);
         model.addAttribute("song", song);
+        List<Tempo> tempos = service.findAllTempos();
+        Collections.sort(tempos);
+        model.addAttribute("tempos", tempos);
         return "updatesong";
     }
     
@@ -183,6 +201,7 @@ public class PrivateController
     {
         Song song = service.findByIdSong(id);
         List<Tempo> tempos = service.findAllTempos();
+        Collections.sort(tempos);
         List<Instrument> instruments = service.findAllInstruments();
         List<Category> categories = service.findAllCategories();
         Map<Category, List<Instrument>> categoryMap = new HashMap<>();
@@ -201,6 +220,30 @@ public class PrivateController
         model.addAttribute("song", song);
         model.addAttribute("tempos", tempos);
         model.addAttribute("instruments", categoryMap);
+        boolean sopranoExists = true;
+        if(song.getSoprano() == null || song.getSoprano().isEmpty())
+        {
+            sopranoExists = false;
+        }
+        model.addAttribute("sopranoExists", sopranoExists);
+        boolean altoExists = true;
+        if(song.getAlto() == null || song.getAlto().isEmpty())
+        {
+            altoExists = false;
+        }
+        model.addAttribute("altoExists", altoExists);
+        boolean tenorExists = true;
+        if(song.getTenor() == null || song.getTenor().isEmpty())
+        {
+            tenorExists = false;
+        }
+        model.addAttribute("tenorExists", tenorExists);
+        boolean bassExists = true;
+        if(song.getBass() == null || song.getBass().isEmpty())
+        {
+            bassExists = false;
+        }
+        model.addAttribute("bassExists", bassExists);
         return "playsongP";
     }
     

@@ -294,8 +294,14 @@ public class LilyPad
                         }
                     }
             }
+            boolean skip = false;
             for(int i=0; i<length.size(); i++)
             {
+                if(skip)
+                {
+                    skip = false;
+                    continue;
+                }
                 if(length.get(i).equals("."))
                 {
                     output += ".";
@@ -314,6 +320,11 @@ public class LilyPad
                 output += length.get(i);
                 if(length.size() > 1 && i < length.size()-1)
                 {
+                    if(length.get(i+1).equals("."))
+                    {
+                        output += ".~";
+                        skip = true;
+                    }
                     output += "~";
                 }
                 output += " ";

@@ -51,9 +51,9 @@ r4  r2~ r4  r2~
  e2  gis4 gis4 gis4 
   a2.  a,4 a,4 a,4 
   g,2 g,4  g,4 g,4 
- g,4  c2.  c2~ .c2~ 
+ g,4  c2.  c2.~~ c2.~~ 
   \bar "" \break 
-.c2~ . r1  }
+c2.~~  r1  }
  \layout { 
  \context { 
  \score 

@@ -53,7 +53,7 @@ c'4  d'2.  b4 c'4
  f4 f4  e2 e4 
   f4 f4 f4  f2. 
   \bar "" \break 
- f2~ .f2~ .f2~ . r1 
+ f2.~~ f2.~~ f2.~~  r1 
   }
  \layout { 
  \context { 

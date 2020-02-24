@@ -53,7 +53,7 @@ a4 a4  c'2 c'4
   c'2 c'4  b4 b4 
  b4  a2.  c'2 d'4 
   \bar "" \break 
- e'2~ .e'2~ . r1  }
+ e'2.~~ e'2.~~  r1  }
  \layout { 
  \context { 
  \score 
